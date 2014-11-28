@@ -29,10 +29,22 @@ describe('Game',function(){
     });
 
     it('can give a score from two frames with a strike first frame', function() {
+			game.frames[0].playARoll(10);     
       game.frames[1].playARoll(5);
       game.frames[1].playARoll(1);
-      game.frames[0].playARoll(10);
-      expect(game.frames.totalScore).toEqual(22);
+      expect(game.totalScore()).toEqual(22);
+    });
+
+    it('can give a score from multiple frames', function(){
+    	game.frames[0].playARoll(1);  
+    	game.frames[0].playARoll(4);   
+      game.frames[1].playARoll(4);
+      game.frames[1].playARoll(5);
+      game.frames[2].playARoll(6);
+      game.frames[2].playARoll(4);
+      game.frames[3].playARoll(5);
+      game.frames[3].playARoll(5);
+      expect(game.totalScore()).toEqual(49);
     });
 
   });    
