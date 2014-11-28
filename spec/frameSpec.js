@@ -51,6 +51,23 @@ describe('Frame', function() {
       nextframe.playARoll(1);
     });
 
+    it('knows when it is a strike', function() {
+      frame.playARoll(10);
+      expect(frame.isStrike()).toBe(true);
+    });
+
+    it('knows when it is not a strike', function() {
+      frame.playARoll(9);
+      frame.playARoll(1);
+      expect(frame.isStrike()).toBe(false);
+    });
+
+    it('knows when it is a spare', function() {
+      frame.playARoll(9);
+      frame.playARoll(1);
+      expect(frame.isSpare()).toBe(true);
+    });
+
     it('gives a score without bonus for the first frame', function() {
       frame.playARoll(1);
       frame.playARoll(5);
@@ -71,6 +88,12 @@ describe('Frame', function() {
       frame.playARoll(0);
       frame.playARoll(0);
       expect(frame.scoreIncludingBonus(nextframe)).toEqual(0);
+    });
+
+    it('gives a score including bonus first ball only for spare', function() {
+      frame.playARoll(9);
+      frame.playARoll(1);
+      expect(frame.scoreIncludingBonus(nextframe)).toEqual(15);
     });
 
   });
