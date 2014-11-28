@@ -22,9 +22,25 @@ describe('Frame', function() {
   describe('recording a roll', function(){
 
   	it('can have value after being played', function(){
-  		frame.playARoll();
+  		frame.playARoll(5);
   		expect(frame.rolls[0]).toEqual(5);
   	});
+
+    it('can record two rolls', function(){
+      frame.playARoll(5);
+      frame.playARoll(3);
+      expect(frame.rolls[0]).toEqual(5);
+      expect(frame.rolls[1]).toEqual(3);
+    });
+
+  it('can record another two rolls', function(){
+      frame.playARoll(3);
+      frame.playARoll(7);
+      expect(frame.rolls[0]).toEqual(3);
+      expect(frame.rolls[1]).toEqual(7);
+    });
+
+
 
   });
 
