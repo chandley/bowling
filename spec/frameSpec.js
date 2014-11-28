@@ -44,4 +44,13 @@ describe('Frame', function() {
 
   });
 
+  describe('scoring', function(){
+
+    it('gives a score without bonus for the first frame', function() {
+      frame.playARoll(1);
+      frame.playARoll(5);
+      expect(frame.score()).toEqual(6);
+    });
+  });
+
 });
