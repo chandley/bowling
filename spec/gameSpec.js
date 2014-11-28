@@ -32,6 +32,7 @@ describe('Game',function(){
 			game.frames[0].playARoll(10);     
       game.frames[1].playARoll(5);
       game.frames[1].playARoll(1);
+
       expect(game.totalScore()).toEqual(22);
     });
 
@@ -44,6 +45,9 @@ describe('Game',function(){
       game.frames[2].playARoll(4);
       game.frames[3].playARoll(5);
       game.frames[3].playARoll(5);
+      game.frames[4].playARoll(0);
+
+      game.frames[4].playARoll(0);
       expect(game.totalScore()).toEqual(49);
     });
 
