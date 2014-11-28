@@ -40,17 +40,39 @@ describe('Frame', function() {
       expect(frame.rolls[1]).toEqual(7);
     });
 
-
-
   });
 
   describe('scoring', function(){
+    var nextframe;
+
+    beforeEach(function(){
+      nextframe = new Frame();
+      nextframe.playARoll(5);
+      nextframe.playARoll(1);
+    });
 
     it('gives a score without bonus for the first frame', function() {
       frame.playARoll(1);
       frame.playARoll(5);
       expect(frame.score()).toEqual(6);
     });
+
+    it('gives a score for an uncompleted frame', function(){
+      frame.playARoll(1)
+      expect(frame.score()).toEqual(1);
+    });
+
+    it('gives a score including bonus for a strike', function(){
+      frame.playARoll(10);
+      expect(frame.scoreIncludingBonus(nextframe)).toEqual(16);
+    })
+
+    it('gives a score not including a bonus for a gutter frame', function(){
+      frame.playARoll(0);
+      frame.playARoll(0);
+      expect(frame.scoreIncludingBonus(nextframe)).toEqual(0);
+    });
+
   });
 
 });
