@@ -53,7 +53,7 @@ describe('Game',function(){
       game.frames[2].playARoll(4);
       game.frames[3].playARoll(5);
       game.frames[3].playARoll(5);
-      expect(game.totalScore()).toEqual(49);
+      expect(game.totalScore()).toEqual(39);
     });
 
   });    
