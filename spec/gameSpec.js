@@ -28,6 +28,14 @@ describe('Game',function(){
       expect(game.totalScore()).toEqual(6)
     });
 
+    it('can give a score from two games no bonus', function() {
+      game.frames[0].playARoll(2);
+      game.frames[0].playARoll(1);     
+      game.frames[1].playARoll(4);
+      game.frames[1].playARoll(2);
+      expect(game.totalScore()).toEqual(9);
+    });
+
     it('can give a score from two frames with a strike first frame', function() {
 			game.frames[0].playARoll(10);     
       game.frames[1].playARoll(5);
@@ -45,9 +53,6 @@ describe('Game',function(){
       game.frames[2].playARoll(4);
       game.frames[3].playARoll(5);
       game.frames[3].playARoll(5);
-      game.frames[4].playARoll(0);
-
-      game.frames[4].playARoll(0);
       expect(game.totalScore()).toEqual(49);
     });
 

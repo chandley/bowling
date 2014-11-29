@@ -17,6 +17,10 @@ describe('Frame', function() {
     	expect(frame.rolls[1]).not.toBeDefined();
     });
 
+    it('is not played when created', function() {
+      expect(frame.isPlayed()).toEqual(false);
+    });
+
   });
 
   describe('recording a roll', function(){
@@ -25,6 +29,13 @@ describe('Frame', function() {
   		frame.playARoll(5);
   		expect(frame.rolls[0]).toEqual(5);
   	});
+
+    it('knows when it has been played', function() {
+      frame.playARoll(5);
+      expect(frame.isPlayed()).toEqual(true);
+    });
+
+    
 
     it('can record two rolls', function(){
       frame.playARoll(5);
