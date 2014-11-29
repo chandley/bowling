@@ -21,6 +21,11 @@ describe('Frame', function() {
       expect(frame.isPlayed()).toEqual(false);
     });
 
+    it('it should know the next frame is', function() {
+      frame = new Frame(nextFrame = new Frame());
+      expect(frame.nextFrame.rolls.length).not.toEqual(0);
+    });
+
   });
 
   describe('recording a roll', function(){
@@ -34,8 +39,6 @@ describe('Frame', function() {
       frame.playARoll(5);
       expect(frame.isPlayed()).toEqual(true);
     });
-
-    
 
     it('can record two rolls', function(){
       frame.playARoll(5);
@@ -54,12 +57,13 @@ describe('Frame', function() {
   });
 
   describe('scoring', function(){
-    var nextframe;
+    var nextFrame;
 
     beforeEach(function(){
-      nextframe = new Frame();
-      nextframe.playARoll(5);
-      nextframe.playARoll(1);
+      nextFrame = new Frame();
+      frame = new Frame(nextFrame);
+      nextFrame.playARoll(5);
+      nextFrame.playARoll(1);
     });
 
     it('knows when it is a strike', function() {
@@ -92,19 +96,19 @@ describe('Frame', function() {
 
     it('gives a score including bonus for a strike', function(){
       frame.playARoll(10);
-      expect(frame.scoreIncludingBonus(nextframe)).toEqual(16);
+      expect(frame.scoreIncludingBonus()).toEqual(16);
     })
 
     it('gives a score not including a bonus for a gutter frame', function(){
       frame.playARoll(0);
       frame.playARoll(0);
-      expect(frame.scoreIncludingBonus(nextframe)).toEqual(0);
+      expect(frame.scoreIncludingBonus()).toEqual(0);
     });
 
     it('gives a score including bonus first ball only for spare', function() {
       frame.playARoll(9);
       frame.playARoll(1);
-      expect(frame.scoreIncludingBonus(nextframe)).toEqual(15);
+      expect(frame.scoreIncludingBonus()).toEqual(15);
     });
 
   });

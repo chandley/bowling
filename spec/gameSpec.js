@@ -56,6 +56,25 @@ describe('Game',function(){
       expect(game.totalScore()).toEqual(39);
     });
 
+    it('can score a gutter game', function(){
+       for(frame = 0; frame < 10; frame++){
+         for(ball = 0; ball < 2; ball++){
+          game.frames[frame].playARoll(0)
+         }
+       }
+        expect(game.totalScore()).toEqual(0);
+    });
+
+    it('can score a perfect game', function(){
+       for(frame = 0; frame < 10; frame++){
+         for(ball = 0; ball < 2; ball++){
+          game.frames[frame].playARoll(10)
+         }
+       }
+        game.frames[9].playARoll(10) // 3 balls last frame
+        expect(game.totalScore()).toEqual(300);
+    });
+
   });    
     
 });
