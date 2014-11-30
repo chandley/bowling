@@ -44,6 +44,15 @@ describe('Game',function(){
       expect(game.totalScore()).toEqual(22);
     });
 
+    it('can give a score from three strikes in a row', function() {
+      game.frames[0].playARoll(10);     
+      game.frames[1].playARoll(10);
+      game.frames[2].playARoll(10);
+
+      expect(game.totalScore()).toEqual(60);
+    });
+
+
     it('can give a score from multiple frames', function(){
     	game.frames[0].playARoll(1);  
     	game.frames[0].playARoll(4);   
@@ -67,12 +76,46 @@ describe('Game',function(){
 
     it('can score a perfect game', function(){
        for(frame = 0; frame < 10; frame++){
-         for(ball = 0; ball < 2; ball++){
           game.frames[frame].playARoll(10)
-         }
        }
-        game.frames[9].playARoll(10) // 3 balls last frame
+        game.frames[9].playARoll(10);
+        game.frames[9].playARoll(10); // 3 balls last frame
         expect(game.totalScore()).toEqual(300);
+    });
+
+    it('can score a game of spares', function(){
+       for(frame = 0; frame < 10; frame++){
+          game.frames[frame].playARoll(5);
+          game.frames[frame].playARoll(5);
+       }
+        game.frames[9].playARoll(5);
+         // 3 balls last frame
+        expect(game.totalScore()).toEqual(150);
+    });
+
+    it('can give a score from full example game', function(){
+      game.frames[0].playARoll(1);  
+      game.frames[0].playARoll(4);   
+      game.frames[1].playARoll(4);
+      game.frames[1].playARoll(5);
+      game.frames[2].playARoll(6);
+      game.frames[2].playARoll(4);
+      game.frames[3].playARoll(5);
+      game.frames[3].playARoll(5);
+      game.frames[4].playARoll(10);
+
+      game.frames[5].playARoll(0);
+      game.frames[5].playARoll(1);
+      game.frames[6].playARoll(7);
+      game.frames[6].playARoll(3);
+      game.frames[7].playARoll(6);
+      game.frames[7].playARoll(4);
+      game.frames[8].playARoll(10);
+
+      game.frames[9].playARoll(2);
+      game.frames[9].playARoll(8);
+      game.frames[9].playARoll(6);
+      expect(game.totalScore()).toEqual(133);
     });
 
   });    
