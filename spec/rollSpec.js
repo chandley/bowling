@@ -16,20 +16,20 @@ describe('Roll',function(){
 
     it('is not played when created', function(){
       expect(roll.isPlayed()).toBe(false);
-    })
+    });
 
     it('is played when pins have been hit', function(){
       roll.hitPins(5);
       expect(roll.isPlayed()).toBe(true);
-    })
+    });
 
     it('remembers how many pins have been hit', function() {
       roll.hitPins(5);
-      expect(roll.pinsHit.toEqual(5);
+      expect(roll.pinsHit).toEqual(5);
     });
 
     it('knows which is the next roll', function() {
-      expect(this.nextRoll).toEqual(anotherRoll);
+      expect(roll.nextRoll).toBe(anotherRoll);
     });
 
 
