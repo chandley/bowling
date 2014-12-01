@@ -11,7 +11,7 @@ describe('Roll',function(){
   describe('basic properties', function(){
     
     it('starts with undefined pins hit', function() {
-    expect(roll.pinsHit).not.toBeDefined();
+    expect(roll.pinsHit).toBe(null);
     });
 
     it('is not played when created', function(){
@@ -30,6 +30,12 @@ describe('Roll',function(){
 
     it('knows which is the next roll', function() {
       expect(roll.nextRoll).toBe(anotherRoll);
+    });
+
+    it('knows which is the next played roll in same frame', function() {
+      roll.hitPins(5);
+      anotherRoll.hitPins(3);
+      expect(roll.nextPlayedRoll()).toBe(anotherRoll);
     });
 
     it('has zero score if not played', function() {
