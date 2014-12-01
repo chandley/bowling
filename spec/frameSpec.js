@@ -17,9 +17,7 @@ describe('Frame', function() {
 
     it('is not played when created', function() {
       expect(frame.isPlayed()).toEqual(false);
-    });
-
-    
+    });  
 
     it('should know what the first roll is', function() {
     expect(frame.firstRoll()).toEqual(frame.rolls[0]);
@@ -39,14 +37,14 @@ describe('Frame', function() {
       expect(frame.isPlayed()).toEqual(true);
     });
 
-    it('can record two rolls', function(){
+    it('can score a roll of 5 and 3', function(){
       frame.playARoll(5);
       frame.playARoll(3);
       expect(frame.rolls[0].pinsHit).toEqual(5);
       expect(frame.rolls[1].pinsHit).toEqual(3);
     });
 
-  it('can record another two rolls', function(){
+  it('can score a roll of 3 and 7', function(){
       frame.playARoll(3);
       frame.playARoll(7);
       expect(frame.rolls[0].pinsHit).toEqual(3);
@@ -98,12 +96,12 @@ describe('Frame', function() {
     it('gives a score without bonus for the first frame', function() {
       frame.playARoll(1);
       frame.playARoll(5);
-      expect(frame.score()).toEqual(6);
+      expect(frame._score()).toEqual(6);
     });
 
     it('gives a score for an uncompleted frame', function(){
       frame.playARoll(1)
-      expect(frame.score()).toEqual(1);
+      expect(frame._score()).toEqual(1);
     });
 
     it('gives a score including bonus for a strike', function(){
