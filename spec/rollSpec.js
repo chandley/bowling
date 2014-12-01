@@ -32,6 +32,15 @@ describe('Roll',function(){
       expect(roll.nextRoll).toBe(anotherRoll);
     });
 
+    it('has zero score if not played', function() {
+      expect(roll.score()).toEqual(0);
+    });
+
+    it('has a score equal to pins hit', function() {
+      roll.hitPins(5);
+      expect(roll.score()).toEqual(5);
+    });
+
 
         
   });    
