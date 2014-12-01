@@ -21,6 +21,10 @@ describe('Frame', function() {
       expect(frame.nextFrame.rolls.length).not.toEqual(0);
     });
 
+    it('should know what the first roll is', function() {
+    expect(frame.firstRoll()).toEqual(frame.rolls[0]);
+    });
+
   });
 
   describe('recording a roll', function(){
