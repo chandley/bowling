@@ -3,7 +3,10 @@ describe('Frame', function() {
   var frame;
 
   beforeEach(function(){
-    frame = new Frame();
+    var third = new Roll(null);
+    var second = new Roll(third);
+    var first = new Roll(second);
+    frame = new Frame([first,second,third],null);
   });
 
   describe('frame setup', function(){
@@ -16,10 +19,7 @@ describe('Frame', function() {
       expect(frame.isPlayed()).toEqual(false);
     });
 
-    it('it should know the next frame is', function() {
-      frame = new Frame(nextFrame = new Frame());
-      expect(frame.nextFrame.rolls.length).not.toEqual(0);
-    });
+    
 
     it('should know what the first roll is', function() {
     expect(frame.firstRoll()).toEqual(frame.rolls[0]);
@@ -57,12 +57,25 @@ describe('Frame', function() {
 
   describe('scoring', function(){
     var nextFrame;
+    var frame;
 
     beforeEach(function(){
-      nextFrame = new Frame();
-      frame = new Frame(nextFrame);
+      var athird = new Roll(null);
+      var asecond = new Roll(athird);
+      var afirst = new Roll(asecond);
+      nextFrame = new Frame([afirst,asecond,athird],null);
+
+      var third = new Roll(nextFrame.firstRoll());
+      var second = new Roll(third);
+      var first = new Roll(second);
+      frame = new Frame([first,second,third],nextFrame);
+
       nextFrame.playARoll(5);
       nextFrame.playARoll(1);
+    });
+
+    it('it should know what the next frame is', function() {
+      expect(frame.nextFrame.rolls.length).not.toEqual(0);
     });
 
     it('knows when it is a strike', function() {
